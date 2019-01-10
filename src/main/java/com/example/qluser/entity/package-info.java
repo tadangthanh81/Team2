@@ -5,4 +5,4 @@
  * @author User
  *
  */
-package com.example.qluser.model;
+package com.example.qluser.entity;
