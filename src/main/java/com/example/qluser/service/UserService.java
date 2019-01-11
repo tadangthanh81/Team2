@@ -14,7 +14,7 @@ public interface UserService {
 
     Optional<Users> findOne(int id);
 
-    void save(Users contact);
+    void save(Users user);
 
     void delete(int id);
 }

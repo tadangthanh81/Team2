@@ -1,5 +1,7 @@
 package com.example.qluser.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ public class RegisterController {
 	private UserServiceIpl userServiceIpl;
 	@GetMapping("/register")
 	public String createAcount(Model model) {
-		model.addAttribute("userRegister", new Users());
+		model.addAttribute("userRegister2", new Users());
 		return "pages/register";
 	}
 	
@@ -30,13 +32,23 @@ public class RegisterController {
 		if (result.hasErrors()) {
 			return "pages/register";
 		}
+		List<Users> listUser = (List<Users>) userServiceIpl.findAll();
+		boolean checkEmail = true;
+		for (Users users : listUser) {
+			if(users.getEmail().equals(userRegister.getEmail())) {
+				checkEmail = false;
+			}
+		}
+		if(!checkEmail) {
+			return "pages/register";
+		}
 		userServiceIpl.save(userRegister);
-		return "redirect:/admin";
+		return "redirect:/index";
 	}
 	
-	@GetMapping("/admin")
+	@GetMapping("/index")
 	public String returnAdmin(Model model) {
-		return "pages/login";
+		return "index";
 	}
 
 }

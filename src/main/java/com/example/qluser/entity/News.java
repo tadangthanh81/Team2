@@ -32,9 +32,8 @@ public class News {
 	@Column(name = "is_hot", nullable=false, length=50)
 	private String isHot;
 
-	@OneToOne
-	@JoinColumn(name = "user_id")
-	private Users user;
+	@Column(name = "user_id", nullable=false)
+	private int userID;
 
 	@Column(name = "approver_id", nullable=false)
 	private int approverID;
@@ -49,7 +48,7 @@ public class News {
 	private String approvedAt;
 
 	public News(int newsID, String url, String title, String description, String content, String newsStatus,
-			String isHot, Users user, int approverID, String createdAt, String updatedAt, String approvedAt) {
+			String isHot, int userID, int approverID, String createdAt, String updatedAt, String approvedAt) {
 		super();
 		this.newsID = newsID;
 		this.url = url;
@@ -58,7 +57,7 @@ public class News {
 		this.content = content;
 		this.newsStatus = newsStatus;
 		this.isHot = isHot;
-		this.user = user;
+		this.userID = userID;
 		this.approverID = approverID;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
@@ -125,12 +124,12 @@ public class News {
 		this.isHot = isHot;
 	}
 
-	public Users getUser() {
-		return user;
+	public int getUserID() {
+		return userID;
 	}
 
-	public void setUser(Users user) {
-		this.user = user;
+	public void setUserID(int userID) {
+		this.userID = userID;
 	}
 
 	public int getApproverID() {
@@ -164,4 +163,6 @@ public class News {
 	public void setApprovedAt(String approvedAt) {
 		this.approvedAt = approvedAt;
 	}
+ 
+
 }
