@@ -1,13 +1,13 @@
-package com.example.qluser;
+package com.anhnguyen.hibernate;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Team2Application {
+public class Demo5Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Team2Application.class, args);
+		SpringApplication.run(Demo5Application.class, args);
 	}
 
 }
