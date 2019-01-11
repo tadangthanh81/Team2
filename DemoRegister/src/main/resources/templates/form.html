@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body>
+    <nav th:replace="layout :: header"></nav>
+
+    <div class="container main-content form">
+        <div class="row">
+          <form action="#" th:action="@{/user/save}" th:object="${user2}"
+		    method="POST" novalidate="novalidate">
+
+		    <div class="form-group">
+		        <label>Name</label> 
+		        <input type="text" class="form-control"
+		            th:field="*{fullName}" /> 
+		    </div>
+		      <div class="form-group">
+		        <label>Email</label> 
+		        <input type="text" class="form-control"
+		            th:field="*{email}" /> 
+		    </div>
+		      <div class="form-group">
+		        <label>Password</label> 
+		        <input type="text" class="form-control"
+		            th:field="*{password}" /> 
+		    </div>
+		    <div class="form-group">
+		        <label>Phone</label> 
+		        <input type="text" class="form-control" th:field="*{mobile}" />
+		    </div>
+		    <button type="submit" class="btn btn-primary">Save</button>
+		</form>
+        </div>
+    </div><!-- /.container -->
+
+    <footer th:replace="layout :: footer"></footer>
+</body>
+</html>
