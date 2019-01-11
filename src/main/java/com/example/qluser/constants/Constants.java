@@ -1,4 +1,4 @@
-package com.example.qluser.util;
+package com.example.qluser.constants;
 
 public class Constants {
 
