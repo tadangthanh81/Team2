@@ -14,6 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	@RequestMapping("/")
 	public String index() {
-		return "login.html";
+		return "pages/login.html";
 	}
 }
