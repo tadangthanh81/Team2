@@ -3,11 +3,20 @@
  */
 package gdp5.team2.cms.controller;
 
-import java.util.Map;
+import java.util.List;
+import java.util.Optional;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import gdp5.team2.cms.entity.Users;
+import gdp5.team2.cms.service.UserService;
 
 /**
  * @author User
@@ -16,9 +25,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
-	@RequestMapping("/login")
-	public String login(@PathVariable Map<String, String> infoLogin) {
-		String username = infoLogin.get("username");
-		return "index.html";
+	@Autowired
+	UserService userService;
+
+	/**
+	 * @param email
+	 * @param pass
+	 * @param httpServletResponse
+	 * @return
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(@RequestParam("email") String email, @RequestParam("password") String pass, HttpServletResponse httpServletResponse) {
+		Optional<Users> lsuser = userService.findByEmail(email);
+		if (lsuser.isPresent()) {
+			Users us = lsuser.get();
+			if (pass.equals(us.getPassword())) {
+				Cookie idUser = new Cookie("iduser", String.valueOf(us.getUserID()));
+				httpServletResponse.addCookie(idUser);
+				return "index";
+			}
+		}
+		return "pages/login.html";
 	}
 }
