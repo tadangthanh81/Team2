@@ -41,10 +41,11 @@ public class LoginController {
 			Users us = lsuser.get();
 			if (pass.equals(us.getPassword())) {
 				Cookie idUser = new Cookie("iduser", String.valueOf(us.getUserID()));
+				idUser.setMaxAge(3600*2);
 				httpServletResponse.addCookie(idUser);
-				return "index";
+				return "redirect:index.html";
 			}
 		}
-		return "pages/login.html";
+		return "login.html";
 	}
 }

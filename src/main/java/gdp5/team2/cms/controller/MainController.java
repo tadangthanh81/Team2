@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class MainController {
-	@RequestMapping("/")
+	@RequestMapping("/login")
 	public String login() {
-		return "pages/login.html";
+		
+		return "login.html";
 	}
-	@RequestMapping("/index")
+	@RequestMapping("/index.html")
 	public String index() {
 		return "index.html";
 	}
