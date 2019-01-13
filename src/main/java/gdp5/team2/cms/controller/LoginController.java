@@ -3,10 +3,8 @@
  */
 package gdp5.team2.cms.controller;
 
-import java.util.List;
 import java.util.Optional;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,18 +40,9 @@ public class LoginController {
 		if (lsuser.isPresent()) {
 			Users us = lsuser.get();
 			if (pass.equals(us.getPassword())) {
-				Cookie idUser = new Cookie("iduser", String.valueOf(us.getUserID()));
-				idUser.setMaxAge(3600*2);
-				httpServletResponse.addCookie(idUser);
 				return "redirect:index.html";
 			}
 		}
 		return "login.html";
-	}
-	
-	@GetMapping("/gg")
-	@ResponseBody
-	public String ds() {
-		return "dsds";
 	}
 }

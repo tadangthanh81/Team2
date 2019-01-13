@@ -4,80 +4,51 @@
 package gdp5.team2.cms.security;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import gdp5.team2.cms.entity.Users;
+import gdp5.team2.cms.repository.UserRepository;
+import gdp5.team2.cms.service.ServiceImpl.UserServiceImpl;
 
 /**
  * @author User
  *
  */
-public class UserDetailConfig implements UserDetails {
+public class UserDetailConfig implements UserDetailsService {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	private String iduser;
-	private String username;
-	private List<GrantedAuthority> role;
+	UserRepository userRepository;
 
-	public UserDetailConfig() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public UserDetailConfig(String iduser, String username, List<GrantedAuthority> role) {
-		super();
-		this.iduser = iduser;
-		this.username = username;
-		this.role = role;
-	}
-
-	public String getIduser() {
-		return iduser;
+	private List<? extends GrantedAuthority> getAuthorities(int idUser) {
+//			Set<GrantedAuthority> listAuthen = new HashSet<>();
+//			List<GrantedAuthority> s = userRepository.authen(idUser);
+//			for (GrantedAuthority d : s) {
+//				String[] n = d.split(",");
+//				for (String j : n) {
+//					listAuthen.add(j);
+//				}
+//			}
+			return null;
 	}
 
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return this.role;
-	}
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		Optional<Users> user = userRepository.findByEmail(email);
+		int iduser = (int) user.get().getUserID();
 
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		return new org.springframework.security.core.userdetails.User("Mai Hoang Anh", "12345678",
+				getAuthorities(iduser));
 
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return this.username;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
+//				User(
+//		          user.getEmail(), user.getPassword(), user.isEnabled(), true, true, 
+//		          true, getAuthorities(user.getRoles()));
 	}
 
 }

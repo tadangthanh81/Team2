@@ -10,6 +10,6 @@ public class NewsController {
 	
 	@RequestMapping("/news")
 	public String showNews() {
-		return "pages/listNews.html";
+		return "listNews.html";
 	}
 }

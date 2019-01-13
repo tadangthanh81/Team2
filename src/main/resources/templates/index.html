@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html>
 
-<head th:replace="pages/head"></head>
+<head th:replace="head"></head>
 
 <body class="hold-transition skin-blue sidebar-mini">
   <!-- Site wrapper -->
   <div class="wrapper">
 
     <!-- header -->
-    <header th:replace="pages/headerUser"></header>
+    <header th:replace="headerUser"></header>
 
     <!-- =============================================== -->
 
     <!-- Left side column. contains the sidebar -->
-    <aside th:replace="pages/navigation"></aside>
+    <aside th:replace="navigation"></aside>
 
     <!-- =============================================== -->
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <div th:replace="pages/listNews"></div>
+        <div th:replace="listUser"></div>
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
 
 
 	<!-- footer -->
-    <div th:replace="pages/footer"></div>
+    <div th:replace="footer"></div>
     <!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
@@ -34,7 +34,7 @@
   </div>
   <!-- ./wrapper -->
 
-    <div th:replace="pages/footerScript"></div>
+    <div th:replace="footerScript"></div>
 
   <script>
     $(document).ready(function () {

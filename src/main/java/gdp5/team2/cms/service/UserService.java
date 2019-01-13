@@ -1,8 +1,10 @@
 package gdp5.team2.cms.service;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 
 import gdp5.team2.cms.entity.Users;
@@ -11,14 +13,7 @@ import gdp5.team2.cms.entity.Users;
 public interface UserService {
 	Optional<Users> findByEmail(String name);
 	
-	Set<Users> findAllUser();
-	
 	Set<String> authen(int id);
-	
-	Users findOne(int id);
-	
-	Users register(Users user);
-	
-	void delete(int id);
-	
+
+	Collection<? extends GrantedAuthority> getAuthorities(int id);
 }

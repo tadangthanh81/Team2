@@ -10,6 +10,6 @@ public class UserController {
 	
 	@RequestMapping("/user")
 	public String indexUser() {
-		return "pages/listUser.html";
+		return "listUser.html";
 	}
 }
