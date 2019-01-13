@@ -256,16 +256,16 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="box table-wrapper">
-                                <div class="table-title">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <h2>Manage <b>News</b></h2>
-                                            </div>
-                                            <!-- <div class="col-sm-6">
+                            <div class="table-title">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h2>Manage <b>News</b></h2>
+                                    </div>
+                                    <!-- <div class="col-sm-6">
                                                 <a href="#addEmployeeModal" class="btn btn-success" ><i class="glyphicon glyphicon-plus-sign"></i> <span>Add New User</span></a>
                                             </div> -->
-                                        </div>
-                                    </div>
+                                </div>
+                            </div>
                             <!-- /.box-header -->
                             <div class="box-body">
                                 <table id="example2" class="table table-bordered table-hover">
@@ -289,15 +289,19 @@
                                             <td> 4</td>
                                             <td>X</td>
                                             <td>
-                                                <a href="newsDetail.html" class="view"><i class="glyphicon glyphicon-eye-open" title="View"></i></a>
+                                                <a href="newsDetail.html" class="view"><i class="glyphicon glyphicon-eye-open"
+                                                        title="View"></i></a>
                                                 <a href="#editEmployeeModal" class="edit"><i class="glyphicon glyphicon-edit"
                                                         title="Edit"></i></a>
-                                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="glyphicon glyphicon-trash"
-                                                        title="Delete"></i></a>
+                                                <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+                                                        class="glyphicon glyphicon-trash" title="Delete"></i></a>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary">Add News</button>
+                                </div>
                             </div>
                             <!-- /.box-body -->
                         </div>
@@ -311,25 +315,25 @@
         </div>
         <!-- /.content-wrapper -->
         <div id="deleteEmployeeModal" class="modal fade">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <form>
-                            <div class="modal-header">						
-                                <h4 class="modal-title">Delete News</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            </div>
-                            <div class="modal-body">					
-                                <p>Are you sure you want to delete these Records?</p>
-                                <p class="text-warning"><small>This action cannot be undone.</small></p>
-                            </div>
-                            <div class="modal-footer">
-                                <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                                <input type="submit" class="btn btn-danger" value="Delete">
-                            </div>
-                        </form>
-                    </div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">
+                            <h4 class="modal-title">Delete News</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure you want to delete these Records?</p>
+                            <p class="text-warning"><small>This action cannot be undone.</small></p>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </div>
+                    </form>
                 </div>
             </div>
+        </div>
 
         <footer class="main-footer">
             <div class="pull-right hidden-xs">
