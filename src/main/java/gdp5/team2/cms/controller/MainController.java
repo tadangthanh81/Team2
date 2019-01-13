@@ -17,7 +17,7 @@ public class MainController {
 		
 		return "login.html";
 	}
-	@RequestMapping("/index.html")
+	@RequestMapping("/index")
 	public String index() {
 		return "index.html";
 	}

@@ -13,18 +13,22 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @author User
  *
  */
-public class UserDetailConfig implements UserDetails{
+public class UserDetailConfig implements UserDetails {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String iduser;
 	private String username;
 	private List<GrantedAuthority> role;
-	
+
 	public UserDetailConfig() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public UserDetailConfig(String iduser, String username,List<GrantedAuthority> role) {
+	public UserDetailConfig(String iduser, String username, List<GrantedAuthority> role) {
 		super();
 		this.iduser = iduser;
 		this.username = username;

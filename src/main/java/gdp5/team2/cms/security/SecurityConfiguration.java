@@ -3,14 +3,26 @@
  */
 package gdp5.team2.cms.security;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import gdp5.team2.cms.entity.Users;
+import gdp5.team2.cms.repository.UserRepository;
 
 /**
  * @author User
@@ -18,23 +30,49 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  */
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+@EnableWebMvc
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter implements WebMvcConfigurer{
 
-	UserDetailConfig userDetail;
+
+	@Autowired
+	UserRepository d;
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
-		.csrf().disable()
-		.authorizeRequests().antMatchers("/login/**").permitAll()
-		.anyRequest().authenticated()
-		.and().formLogin().loginPage("/login")
-					.usernameParameter("email")
-					.passwordParameter("password").defaultSuccessUrl("/index");
+//		http
+//		.csrf().disable()
+//		.authorizeRequests()
+//			.antMatchers("/resources/**","/login/**","/gg").permitAll()
+//			.antMatchers("/register/**").permitAll()
+//		.anyRequest().authenticated()
+//		.and().formLogin().loginPage("/login")
+//					.usernameParameter("email")
+//					.passwordParameter("password").defaultSuccessUrl("/index")
+//		.failureUrl("/gg");
 	}
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.inMemoryAuthentication()
+//		auth.userDetailsService(new UserDetailsService() {
+//			
+//			@Override
+//			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//				// TODO Auto-generated method stub
+//				Users h=  d.findByEmail(username).get();
+//				List<GrantedAuthority>  d= d.authen(h.getUserID());
+//				return new UserDetailConfig(h.getUserID(), h.getFullName(), );
+//			}
+//		})dsds
 //        .withUser("user1").password("thanh123");
 	}
+	 private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
+	            "classpath:/META-INF/resources/", "classpath:/resources/",
+	            "classpath:/static/", "classpath:/public/" };
+
+	    @Override
+	    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	        registry.addResourceHandler("/resources/**")
+	            .addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
+	    }
+	
 	
 }
