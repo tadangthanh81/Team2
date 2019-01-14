@@ -5,16 +5,14 @@ import java.util.Optional;
 
 import com.example.qluser.entity.Users;
 
-
-
 public interface UserService {
 	Iterable<Users> findAll();
 
-    List<Users> search(String q);
+	List<Users> search(String q);
 
-    Optional<Users> findOne(int id);
+	Optional<Users> findOne(int id);
 
-    void save(Users contact);
+	void save(Users contact);
 
-    void delete(int id);
+	void delete(int id);
 }

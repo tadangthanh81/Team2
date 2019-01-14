@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.qluser.entity.Users;
-import com.example.qluser.service.UserServiceIpl;
+import com.example.qluser.service.UserServiceImpl;
 
 
 
 @Controller
 public class RegisterController {
 	@Autowired
-	private UserServiceIpl userServiceIpl;
+	private UserServiceImpl userServiceIpl;
 	@GetMapping("/register")
 	public String createAcount(Model model) {
 		model.addAttribute("userRegister", new Users());

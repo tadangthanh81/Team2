@@ -1,16 +1,22 @@
 package com.example.qluser.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="news")
 public class News {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "news_id", nullable=false)
 	private int newsID;
 
@@ -32,7 +38,7 @@ public class News {
 	@Column(name = "is_hot", nullable=false, length=50)
 	private String isHot;
 
-	@OneToOne
+	@ManyToOne(cascade=CascadeType.DETACH,fetch=FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private Users user;
 
@@ -67,6 +73,11 @@ public class News {
 
 	public News() {
 		super();
+	}	
+
+	public News(int newsID) {
+		super();
+		this.newsID = newsID;
 	}
 
 	public int getNewsID() {

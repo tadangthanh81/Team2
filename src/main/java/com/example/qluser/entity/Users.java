@@ -1,5 +1,6 @@
 package com.example.qluser.entity;
 
+
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -35,6 +36,10 @@ public class Users {
 
 	@Column(name = "user_status", length = 225)
 	private String userStatus;
+
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="user_id")
+	Set<News> news;
 
 
 	public Users(int userID, String fullName, String email, String mobile, String password, String userStatus) {
@@ -99,5 +104,11 @@ public class Users {
 		this.userStatus = userStatus;
 	}
 
+	public Set<News> getNews() {
+		return news;
+	}
 
+	public void setNews(Set<News> news) {
+		this.news = news;
+	}
 }

@@ -1,25 +1,53 @@
 package com.example.qluser.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "userRole")
+@Table(name = "user_role")
 public class UserRole {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "userRoleId", nullable = false)
+	@Column(name = "user_RoleId", nullable = false)
 	private int userRolesID;
 
-	@OneToOne
+	@ManyToOne(cascade=CascadeType.DETACH)
 	@JoinColumn(name = "user_id")
 	Users user;
+
+	@ManyToOne(cascade=CascadeType.DETACH)
+	@JoinColumn(name = "role_id")
+	Roles roles;
+
+	@Column(name = "role_status", nullable = false, length = 50)
+	private String roleStatus;
+
+	@Column(name = "created_at", nullable = false, length = 50)
+	private String createdAt;
+
+	@Column(name = "updated_at", nullable = false, length = 50)
+	private String updatedAt;
+
+	public UserRole(int userRolesID, Users user, Roles roles, String roleStatus, String createdAt, String updatedAt) {
+		super();
+		this.userRolesID = userRolesID;
+		this.user = user;
+		this.roles = roles;
+		this.roleStatus = roleStatus;
+		this.createdAt = createdAt;
+		this.updatedAt = updatedAt;
+	}
+
+	public UserRole() {
+		super();
+	}
 
 	public int getUserRolesID() {
 		return userRolesID;
@@ -35,50 +63,6 @@ public class UserRole {
 
 	public void setUser(Users user) {
 		this.user = user;
-	}
-
-	public UserRole(int userRolesID, Users user, Roles roles, String roleStatus, String createAt, String updateAt) {
-		super();
-		this.userRolesID = userRolesID;
-		this.user = user;
-		this.roles = roles;
-		this.roleStatus = roleStatus;
-		this.createAt = createAt;
-		this.updateAt = updateAt;
-	}
-
-	@OneToOne
-	@JoinColumn(name = "role_id")
-	Roles roles;
-
-	@Column(name = "role_status", nullable = false, length = 50)
-	private String roleStatus;
-
-	@Column(name = "created_at", nullable = false, length = 50)
-	private String createAt;
-
-	@Column(name = "updated_at", nullable = false, length = 50)
-	private String updateAt;
-
-	public UserRole(Users users, Roles roles, String roleStatus, String createAt, String updateAt) {
-		super();
-		this.user = users;
-		this.roles = roles;
-		this.roleStatus = roleStatus;
-		this.createAt = createAt;
-		this.updateAt = updateAt;
-	}
-
-	public UserRole() {
-		super();
-	}
-
-	public Users getUsers() {
-		return user;
-	}
-
-	public void setUsers(Users users) {
-		this.user = users;
 	}
 
 	public Roles getRoles() {
@@ -97,19 +81,19 @@ public class UserRole {
 		this.roleStatus = roleStatus;
 	}
 
-	public String getCreateAt() {
-		return createAt;
+	public String getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setCreateAt(String createAt) {
-		this.createAt = createAt;
+	public void setCreatedAt(String createdAt) {
+		this.createdAt = createdAt;
 	}
 
-	public String getUpdateAt() {
-		return updateAt;
+	public String getUpdatedAt() {
+		return updatedAt;
 	}
 
-	public void setUpdateAt(String updateAt) {
-		this.updateAt = updateAt;
-	}
+	public void setUpdatedAt(String updatedAt) {
+		this.updatedAt = updatedAt;
+	}	
 }
