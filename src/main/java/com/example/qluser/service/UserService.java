@@ -10,7 +10,7 @@ import com.example.qluser.entity.Users;
 public interface UserService {
 	Iterable<Users> findAll();
 
-    List<Users> search(String q);
+//    Users findByEMail(String email);
 
     Optional<Users> findOne(int id);
 

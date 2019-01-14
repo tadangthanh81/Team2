@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.qluser.entity.Users;
 import com.example.qluser.repository.UserReposity;
+
 @Service
 public class UserServiceIpl implements UserService {
 	
@@ -20,12 +21,7 @@ public class UserServiceIpl implements UserService {
 		return userReposity.findAll();
 	}
 
-	@Override
-	public List<Users> search(String q) {
-		// TODO Auto-generated method stub
-		return userReposity.findByEmail(q);
-	}
-
+	
 	@Override
 	public Optional<Users> findOne(int id) {
 		// TODO Auto-generated method stub
@@ -43,5 +39,14 @@ public class UserServiceIpl implements UserService {
 		userReposity.deleteById(id);
 		
 	}
+	
+
+
+//	@Override
+//	public Users findByEMail(String email) {
+//		// TODO Auto-generated method stub
+//		userReposity.
+//	}
+//	
 
 }

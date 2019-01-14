@@ -1,12 +1,26 @@
 package com.example.qluser.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+import org.hibernate.usertype.LoggableUserType;
+
+
+
+@Entity
+@Table(name = "news")
 public class News {
 
 	@Id
@@ -14,155 +28,189 @@ public class News {
 	@Column(name = "news_id", nullable=false)
 	private int newsID;
 
-	@Column(name = "url", nullable=false, length=225)
+	@Column(name = "url")
 	private String url;
 
-	@Column(name = "title", nullable=false, length=225)
+	@Column(name = "title")
 	private String title;
 
-	@Column(name = "news_desc", nullable=false, length=150)
+	@Column(name = "news_desc")
 	private String description;
 
-	@Column(name = "content", nullable=false)
+	@Column(name = "content")
 	private String content;
 
-	@Column(name = "news_status", nullable=false, length=50)
+	@Column(name = "news_status")
 	private String newsStatus;
 
-	@Column(name = "is_hot", nullable=false, length=50)
+	@Column(name = "is_hot")
 	private String isHot;
+	
+@ManyToOne
+@JoinColumn(name = "user_id")
+	 private Users userN;
+//	 @OneToMany(cascade = CascadeType.ALL,mappedBy = "passagier")
+//	   private List<Buchung> buchungen = new ArrayList<>();
+//	@OneToMany
+//	@JoinColumn(name = "user_id")
+//	private Users userIDD;
+	 @Column(name = "approver_id", nullable=false)
+		private int approverID;
 
-	@Column(name = "user_id", nullable=false)
-	private int userID;
+		@Column(name = "created_at")
+		private String createdAt;
 
-	@Column(name = "approver_id", nullable=false)
-	private int approverID;
+		@Column(name = "updated_at")
+		private String updatedAt;
 
-	@Column(name = "created_at", nullable=false, length=50)
-	private String createdAt;
+		@Column(name = "approved_at")
+		private String approvedAt;
 
-	@Column(name = "updated_at", nullable=false, length=50)
-	private String updatedAt;
+		public News(int newsID, String url, String title, String description, String content, String newsStatus,
+				String isHot, Users userN, int approverID, String createdAt, String updatedAt, String approvedAt) {
+			super();
+			this.newsID = newsID;
+			this.url = url;
+			this.title = title;
+			this.description = description;
+			this.content = content;
+			this.newsStatus = newsStatus;
+			this.isHot = isHot;
+			this.userN = userN;
+			this.approverID = approverID;
+			this.createdAt = createdAt;
+			this.updatedAt = updatedAt;
+			this.approvedAt = approvedAt;
+		}
 
-	@Column(name = "approved_at", nullable=false, length=50)
-	private String approvedAt;
+		public News() {
+			super();
+		}
 
-	public News(int newsID, String url, String title, String description, String content, String newsStatus,
-			String isHot, int userID, int approverID, String createdAt, String updatedAt, String approvedAt) {
-		super();
-		this.newsID = newsID;
-		this.url = url;
-		this.title = title;
-		this.description = description;
-		this.content = content;
-		this.newsStatus = newsStatus;
-		this.isHot = isHot;
-		this.userID = userID;
-		this.approverID = approverID;
-		this.createdAt = createdAt;
-		this.updatedAt = updatedAt;
-		this.approvedAt = approvedAt;
-	}
+		public int getNewsID() {
+			return newsID;
+		}
 
-	public News() {
-		super();
-	}
+		public void setNewsID(int newsID) {
+			this.newsID = newsID;
+		}
 
-	public int getNewsID() {
-		return newsID;
-	}
+		public String getUrl() {
+			return url;
+		}
 
-	public void setNewsID(int newsID) {
-		this.newsID = newsID;
-	}
+		public void setUrl(String url) {
+			this.url = url;
+		}
 
-	public String getUrl() {
-		return url;
-	}
+		public String getTitle() {
+			return title;
+		}
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+		public void setTitle(String title) {
+			this.title = title;
+		}
 
-	public String getTitle() {
-		return title;
-	}
+		public String getDescription() {
+			return description;
+		}
 
-	public void setTitle(String title) {
-		this.title = title;
-	}
+		public void setDescription(String description) {
+			this.description = description;
+		}
 
-	public String getDescription() {
-		return description;
-	}
+		public String getContent() {
+			return content;
+		}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+		public void setContent(String content) {
+			this.content = content;
+		}
 
-	public String getContent() {
-		return content;
-	}
+		public String getNewsStatus() {
+			return newsStatus;
+		}
 
-	public void setContent(String content) {
-		this.content = content;
-	}
+		public void setNewsStatus(String newsStatus) {
+			this.newsStatus = newsStatus;
+		}
 
-	public String getNewsStatus() {
-		return newsStatus;
-	}
+		public String getIsHot() {
+			return isHot;
+		}
 
-	public void setNewsStatus(String newsStatus) {
-		this.newsStatus = newsStatus;
-	}
+		public void setIsHot(String isHot) {
+			this.isHot = isHot;
+		}
 
-	public String getIsHot() {
-		return isHot;
-	}
+		public Users getUserN() {
+			return userN;
+		}
 
-	public void setIsHot(String isHot) {
-		this.isHot = isHot;
-	}
+		public void setUserN(Users userN) {
+			this.userN = userN;
+		}
 
-	public int getUserID() {
-		return userID;
-	}
+		public int getApproverID() {
+			return approverID;
+		}
 
-	public void setUserID(int userID) {
-		this.userID = userID;
-	}
+		public void setApproverID(int approverID) {
+			this.approverID = approverID;
+		}
 
-	public int getApproverID() {
-		return approverID;
-	}
+		public String getCreatedAt() {
+			return createdAt;
+		}
 
-	public void setApproverID(int approverID) {
-		this.approverID = approverID;
-	}
+		public void setCreatedAt(String createdAt) {
+			this.createdAt = createdAt;
+		}
 
-	public String getCreatedAt() {
-		return createdAt;
-	}
+		public String getUpdatedAt() {
+			return updatedAt;
+		}
 
-	public void setCreatedAt(String createdAt) {
-		this.createdAt = createdAt;
-	}
+		public void setUpdatedAt(String updatedAt) {
+			this.updatedAt = updatedAt;
+		}
 
-	public String getUpdatedAt() {
-		return updatedAt;
-	}
+		public String getApprovedAt() {
+			return approvedAt;
+		}
 
-	public void setUpdatedAt(String updatedAt) {
-		this.updatedAt = updatedAt;
-	}
+		public void setApprovedAt(String approvedAt) {
+			this.approvedAt = approvedAt;
+		}
 
-	public String getApprovedAt() {
-		return approvedAt;
-	}
+//	 @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//	    @JoinColumn(name = "post_id", nullable = false)
+//	    @OnDelete(action = OnDeleteAction.CASCADE)
+//	    @JsonIgnore
+//	    private Post post;
+//	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+//	@JoinColumn(name = "user_id", nullable = false)
+//	@OnDelete(action = OnDeleteAction.CASCADE)
+//	 @JsonIgnore
+	 
+	
 
-	public void setApprovedAt(String approvedAt) {
-		this.approvedAt = approvedAt;
-	}
- 
 
+
+
+
+//	 @ManyToOne
+//	    @JoinColumn(name = "user_id")
+//		public Users getUserIDD() {
+//			return userIDD;
+//		}
+//
+//		public void setUserIDD(Users userIDD) {
+//			this.userIDD = userIDD;
+//		}
+
+	
+
+	
+	
 }

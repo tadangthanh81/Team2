@@ -1,5 +1,10 @@
 package com.example.qluser.entity;
 
+
+
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,11 +14,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class Users {
 
 	@Id
@@ -21,23 +30,44 @@ public class Users {
 	@Column(name = "user_id", nullable = false)
 	private int userID;
 
-	@Column(name = "fullname", nullable = false, length = 225)
+	@Column(name = "fullname")
 	private String fullName;
 
-	@Column(name = "email", nullable = false, length = 50)
+	@Column(name = "email")
 	private String email;
 
-	@Column(name = "mobile", nullable = false, length = 20)
+	@Column(name = "mobile")
 	private String mobile;
 
-	@Column(name = "password", nullable = false, length = 225)
+	@Column(name = "password")
 	private String password;
 
-	@Column(name = "user_status", length = 225)
+	@Column(name = "user_status")
 	private String userStatus;
+//	@Column(name = "confirmation_token")
+//	private String confirmationToken;
+	
+//public String getConfirmationToken() {
+//		return confirmationToken;
+//	}
+//
+//	public void setConfirmationToken(String confirmationToken) {
+//		this.confirmationToken = confirmationToken;
+//	}
 
 
-	public Users(int userID, String fullName, String email, String mobile, String password, String userStatus) {
+//	@JsonIgnore
+//	   @ManyToOne
+//	   @JoinColumn(name = "passagier_id") 
+//	   private Passagier passagier;
+
+//	private Set<News> news;
+
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "userN")
+	private List<News> news = new ArrayList<>();
+
+	public Users(int userID, String fullName, String email, String mobile, String password, String userStatus,
+			List<News> news) {
 		super();
 		this.userID = userID;
 		this.fullName = fullName;
@@ -45,6 +75,7 @@ public class Users {
 		this.mobile = mobile;
 		this.password = password;
 		this.userStatus = userStatus;
+		this.news = news;
 	}
 
 	public Users() {
@@ -99,5 +130,12 @@ public class Users {
 		this.userStatus = userStatus;
 	}
 
+	public List<News> getNews() {
+		return news;
+	}
+
+	public void setNews(List<News> news) {
+		this.news = news;
+	}
 
 }
