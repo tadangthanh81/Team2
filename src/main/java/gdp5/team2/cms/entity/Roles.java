@@ -35,6 +35,11 @@ public class Roles {
 	@JoinColumn(name = "role_id")
 	Set<UserRole> userRoles;
 
+	
+	public Roles() {
+		super();
+	}
+
 	public Roles(int roleID, String roleName, String descrpition, Set<RoleMenu> roleMenus) {
 		super();
 		this.roleID = roleID;
@@ -43,8 +48,9 @@ public class Roles {
 		this.roleMenus = roleMenus;
 	}
 
-	public Roles() {
+	public Roles(int RolesID) {
 		super();
+		this.roleID=RolesID;
 	}
 
 	public int getRoleID() {

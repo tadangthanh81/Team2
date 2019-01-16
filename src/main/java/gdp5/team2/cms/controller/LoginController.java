@@ -28,12 +28,6 @@ public class LoginController {
 	@Autowired
 	UserService userService;
 
-	/**
-	 * @param email
-	 * @param pass
-	 * @param httpServletResponse
-	 * @return
-	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(@RequestParam("email") String email, @RequestParam("password") String pass, HttpServletResponse httpServletResponse) {
 		Optional<Users> lsuser = userService.findByEmail(email);
